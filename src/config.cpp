@@ -35,16 +35,16 @@ std::expected<ModConfig, std::string> ParseConfig() {
     try{
         const auto config = toml::parse("moddata.toml");
 
-        m.name = toml::find<std::string>(config, "modname");
+        m.name = '"' + toml::find<std::string>(config, "modname") + '"';
         LogIt("found config modname it is: {}", m.name);
 
-        m.description = toml::find<std::string>(config, "description");
+        m.description = '"' +toml::find<std::string>(config, "description")+ '"';
         LogIt("found config description, it is: {}", m.description);
 
-        m.license = toml::find<std::string>(config, "license");
+        m.license = '"' + toml::find<std::string>(config, "license") + '"';
         LogIt("found config license, it is: {}", m.license);
 
-        m.version = toml::find<std::string>(config, "modversion");
+        m.version = '"' + toml::find<std::string>(config, "modversion") + '"';
         LogIt("found config version, it is: {}", m.version);
 
         const auto& configs = toml::find(config, "Configs");
